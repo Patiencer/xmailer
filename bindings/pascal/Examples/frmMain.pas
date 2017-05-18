@@ -9,6 +9,7 @@ interface
 uses
   StdCtrls,
   Classes,
+  Controls,
   Forms,
   Dialogs,
   ComCtrls,
@@ -65,7 +66,11 @@ var
 
 implementation
 
-{$R *.lfm}
+{$IFDEF FPC}
+ {$R *.lfm}
+{$ELSE}
+ {$R *.dfm}
+{$ENDIF}
 
 { TfrMain }
 

@@ -12,7 +12,7 @@ uses
   Interfaces,
 {$ENDIF}
   Forms,
-  frmMain in 'frmMain' { frMain };
+  frmMain in 'frmMain.pas' { frMain };
 
 begin
 {$IFDEF FPC}
