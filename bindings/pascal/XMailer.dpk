@@ -30,4 +30,10 @@ package XMailer;
 requires
   rtl;
 
+contains
+  libxmailer in 'libxmailer.pas',
+  XMailerMessage in 'XMailerMessage.pas',
+  XMailerSMTP in 'XMailerSMTP.pas',
+  XMailerUtils in 'XMailerUtils.pas';
+
 end.

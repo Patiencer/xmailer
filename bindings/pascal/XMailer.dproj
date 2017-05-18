@@ -85,6 +85,10 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
+        <DCCReference Include="libxmailer.pas"/>
+        <DCCReference Include="XMailerMessage.pas"/>
+        <DCCReference Include="XMailerSMTP.pas"/>
+        <DCCReference Include="XMailerUtils.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
