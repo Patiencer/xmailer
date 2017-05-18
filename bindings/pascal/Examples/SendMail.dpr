@@ -5,15 +5,21 @@ program SendMail;
 {$ENDIF}
 
 uses
-{$IFDEF UNIX}
+{$IFDEF FPC}
+ {$IFDEF UNIX}
   CThreads,
-{$ENDIF}
+ {$ENDIF}
   Interfaces,
+{$ENDIF}
   Forms,
-  frmMain;
+  frmMain in 'frmMain' { frMain };
 
 begin
+{$IFDEF FPC}
   RequireDerivedFormResource := True;
+{$ELSE}
+  Application.MainFormOnTaskbar := True;
+{$ENDIF}
   Application.Initialize;
   Application.CreateForm(TfrMain, frMain);
   Application.Run;
