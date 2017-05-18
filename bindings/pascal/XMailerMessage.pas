@@ -144,7 +144,7 @@ begin
 end;
 
 function TXMailerMessage.Send: Boolean;
-var
+const
   Vct: array[TXMailerContentType] of cenum = (XM_SMTP_CT_TEXT, XM_SMTP_CT_HTML);
 begin
   if not Assigned(FSMTP) then

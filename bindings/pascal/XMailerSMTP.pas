@@ -73,7 +73,6 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    class destructor Destroy;
     class procedure Initialize;
     class procedure Finalize;
     procedure Prepare;
@@ -117,11 +116,6 @@ destructor TXMailerSMTP.Destroy;
 begin
   Unprepare;
   inherited Destroy;
-end;
-
-class destructor TXMailerSMTP.Destroy;
-begin
-  Finalize;
 end;
 
 class procedure TXMailerSMTP.Initialize;
@@ -178,5 +172,10 @@ begin
   Fsmtp := nil;
   FPrepared := False;
 end;
+
+initialization
+
+finalization
+  TXMailerSMTP.Finalize;
 
 end.
