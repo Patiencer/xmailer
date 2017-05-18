@@ -31,7 +31,6 @@
 
 char *getpass(const char *prompt) {
     char *res;
-    size_t len;
     HANDLE handle;
     DWORD mode;
     res = malloc((sizeof(char) * 1024) + sizeof(char));
