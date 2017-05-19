@@ -146,13 +146,19 @@ end;
 function TXMailerMessage.Send: Boolean;
 const
   Vct: array[TXMailerContentType] of cenum = (XM_SMTP_CT_TEXT, XM_SMTP_CT_HTML);
+var
+  Vattach: Pcchar;
 begin
   if not Assigned(FSMTP) then
     raise EXMailerMessage.CreateRes(@SXMailerMessageSMTPNotAssigned);
   FSMTP.Prepare;
+  if FAttachments.Count > 0 then
+    Vattach := S2C(FAttachments.CommaText)
+  else
+    Vattach := nil;
   Result := xm_smtp_send(FSMTP.Handle, Vct[FContentType], S2C(FFrom), S2C(FTo),
-    S2C(FSubject), S2C(TrimRight(FMessage.Text)), S2C(FAttachments.CommaText),
-    S2C(FCC), S2C(FBCC), @DoErrCb, FSMTP);
+    S2C(FSubject), S2C(TrimRight(FMessage.Text)), Vattach, S2C(FCC), S2C(FBCC),
+    @DoErrCb, FSMTP);
 end;
 
 end.
