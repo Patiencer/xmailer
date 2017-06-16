@@ -106,7 +106,7 @@ char *_xm_smtp_payld_fmt(enum XM_SMTP_CT ct, const char *subject, const char *fr
     if (attach) {
         bound_gen_cb(rec.bound);
         hct = mu_fmt("multipart/mixed; boundary=\"%s\"", rec.bound);
-        rec.payld = _xm_smtp_mp_msg_fmt(rec.bound, t, msg);
+        rec.payld = _xm_smtp_mp_msg_fmt(rec.bound, t, msg ? msg : "");
         if (rec.payld)
             mu_split(attach, ",", &_xm_smtp_mp_attach_split_cb, &rec);
         end = mu_fmt("--%s--", rec.bound);
@@ -128,7 +128,7 @@ char *_xm_smtp_payld_fmt(enum XM_SMTP_CT ct, const char *subject, const char *fr
     "User-Agent: " PACKAGE_STRING "\r\n" \
     "\r\n" \
     "%s"
-    res = mu_fmt(_XM_SMTP_PAYLD_FMT, dt, subject, from, to, hcc, hct, rec.payld);
+    res = mu_fmt(_XM_SMTP_PAYLD_FMT, dt, subject ? subject : "", from, to, hcc, hct, rec.payld);
 #undef _XM_SMTP_PAYLD_FMT
     free(dt);
     free(hcc);

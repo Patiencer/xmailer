@@ -154,14 +154,6 @@ bool xm_smtp_send(struct xm_smtp *smtp, enum XM_SMTP_CT ct, const char *from, co
         _XM_ERR(err_cb, err_cls, S_XM_REQ_ARG, "to");
         return false;
     }
-    if (mu_is_empty(subject)) {
-        _XM_ERR(err_cb, err_cls, S_XM_REQ_ARG, "subject");
-        return false;
-    }
-    if (mu_is_empty(msg)) {
-        _XM_ERR(err_cb, err_cls, S_XM_REQ_ARG, "msg");
-        return false;
-    }
     payld = calloc(1, sizeof(struct _xm_smtp_payld));
     if (!payld) {
         _XM_ERR(err_cb, err_cls, S_XM_OBJ_ERR, "payload");
