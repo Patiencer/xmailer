@@ -13,12 +13,12 @@ object frMain: TfrMain
     Height = 394
     Top = 0
     Width = 478
-    ActivePage = tsMessage
+    ActivePage = tsEmail
     Align = alClient
     TabIndex = 0
     TabOrder = 0
-    object tsMessage: TTabSheet
-      Caption = 'Message'
+    object tsEmail: TTabSheet
+      Caption = 'E-mail'
       ClientHeight = 359
       ClientWidth = 472
       object lbType: TLabel
@@ -108,7 +108,6 @@ object frMain: TfrMain
         ItemHeight = 0
         OnClick = lsAttachmentsClick
         OnDblClick = lsAttachmentsDblClick
-        Options = [lboDrawFocusRect]
         ScrollWidth = 319
         TabOrder = 5
         TopIndex = -1
@@ -254,7 +253,7 @@ object frMain: TfrMain
     Left = 112
     Top = 240
   end
-  object XMailerMessage1: TXMailerMessage
+  object XMailerEmail1: TXMailerEmail
     SMTP = XMailerSMTP1
     ContentType = xmctText
     Left = 224

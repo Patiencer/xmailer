@@ -26,9 +26,9 @@
         <UnitName Value="XMailerSMTP"/>
       </Item3>
       <Item4>
-        <Filename Value="XMailerMessage.pas"/>
+        <Filename Value="XMailerEmail.pas"/>
         <HasRegisterProc Value="True"/>
-        <UnitName Value="XMailerMessage"/>
+        <UnitName Value="XMailerEmail"/>
       </Item4>
     </Files>
     <RequiredPkgs Count="1">

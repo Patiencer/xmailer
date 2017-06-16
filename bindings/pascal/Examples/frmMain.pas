@@ -15,7 +15,7 @@ uses
   ComCtrls,
   Spin,
   XMailerSMTP,
-  XMailerMessage;
+  XMailerEmail;
 
 type
 
@@ -49,9 +49,9 @@ type
     OpenDialog1: TOpenDialog;
     txMessage: TMemo;
     pcMain: TPageControl;
-    tsMessage: TTabSheet;
+    tsEmail: TTabSheet;
     tsConfig: TTabSheet;
-    XMailerMessage1: TXMailerMessage;
+    XMailerEmail1: TXMailerEmail;
     XMailerSMTP1: TXMailerSMTP;
     procedure btSendClick(Sender: TObject);
     procedure lsAttachmentsClick(Sender: TObject);
@@ -95,13 +95,13 @@ begin
   btSend.Enabled := False;
   try
     Prepare;
-    XMailerMessage1.ContentType := TXMailerContentType(cbType.ItemIndex);
-    XMailerMessage1.From := edFrom.Text;
-    XMailerMessage1.&To := edTo.Text;
-    XMailerMessage1.Subject := edSubject.Text;
-    XMailerMessage1.Message.Assign(txMessage.Lines);
-    XMailerMessage1.Attachments.Assign(lsAttachments.Items);
-    if XMailerMessage1.Send then
+    XMailerEmail1.ContentType := TXMailerContentType(cbType.ItemIndex);
+    XMailerEmail1.From := edFrom.Text;
+    XMailerEmail1.&To := edTo.Text;
+    XMailerEmail1.Subject := edSubject.Text;
+    XMailerEmail1.Message.Assign(txMessage.Lines);
+    XMailerEmail1.Attachments.Assign(lsAttachments.Items);
+    if XMailerEmail1.Send then
       ShowMessage('E-mail successfully sent');
   finally
     btSend.Enabled := True;
