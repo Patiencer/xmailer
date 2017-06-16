@@ -22,7 +22,7 @@
  * SOFTWARE.
  *)
 
-unit XMailerMessage;
+unit XMailerEmail;
 
 {$IFDEF FPC}
  {$MODE DELPHI}
@@ -38,21 +38,21 @@ uses
   XMailerSMTP;
 
 resourcestring
-  SXMailerMessageSMTPNotAssigned = 'SMTP not assigned';
+  SXMailerEmailSMTPNotAssigned = 'SMTP not assigned';
 
 type
 
-  { EXMailerMessage }
+  { EXMailerEmail }
 
-  EXMailerMessage = class(Exception);
+  EXMailerEmail = class(Exception);
 
   { TXMailerContentType }
 
   TXMailerContentType = (xmctText, xmctHTML);
 
-  { TXMailerMessage }
+  { TXMailerEmail }
 
-  TXMailerMessage = class(TComponent)
+  TXMailerEmail = class(TComponent)
   private
     FAttachments: TStringList;
     FBCC: string;
@@ -92,26 +92,26 @@ implementation
 
 procedure Register;
 begin
-  RegisterComponents('XMailer', [TXMailerMessage]);
+  RegisterComponents('XMailer', [TXMailerEmail]);
 end;
 
-{ TXMailerMessage }
+{ TXMailerEmail }
 
-constructor TXMailerMessage.Create(AOwner: TComponent);
+constructor TXMailerEmail.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   FMessage := TStringList.Create;
   FAttachments := TStringList.Create;
 end;
 
-destructor TXMailerMessage.Destroy;
+destructor TXMailerEmail.Destroy;
 begin
   FAttachments.Free;
   FMessage.Free;
   inherited Destroy;
 end;
 
-procedure TXMailerMessage.SetAttachments(AValue: TStringList);
+procedure TXMailerEmail.SetAttachments(AValue: TStringList);
 begin
   if Assigned(AValue) then
     FAttachments.Clear
@@ -119,7 +119,7 @@ begin
     FAttachments.Assign(AValue);
 end;
 
-procedure TXMailerMessage.SetMessage(AValue: TStringList);
+procedure TXMailerEmail.SetMessage(AValue: TStringList);
 begin
   if Assigned(AValue) then
     FMessage.Assign(AValue)
@@ -127,7 +127,7 @@ begin
     FMessage.Clear;
 end;
 
-procedure TXMailerMessage.Notification(AComponent: TComponent;
+procedure TXMailerEmail.Notification(AComponent: TComponent;
   AOperation: TOperation);
 begin
   inherited Notification(AComponent, AOperation);
@@ -135,7 +135,7 @@ begin
     SMTP := nil;
 end;
 
-class procedure TXMailerMessage.DoErrCb(Acls: Pcvoid; const Amsg: Pcchar);
+class procedure TXMailerEmail.DoErrCb(Acls: Pcvoid; const Amsg: Pcchar);
 var
   VSMTP: TXMailerSMTP absolute Acls;
 begin
@@ -143,14 +143,14 @@ begin
     VSMTP.OnError(VSMTP, TrimRight(C2S(Amsg)));
 end;
 
-function TXMailerMessage.Send: Boolean;
+function TXMailerEmail.Send: Boolean;
 const
   Vct: array[TXMailerContentType] of cenum = (XM_SMTP_CT_TEXT, XM_SMTP_CT_HTML);
 var
   Vattach: Pcchar;
 begin
   if not Assigned(FSMTP) then
-    raise EXMailerMessage.CreateRes(@SXMailerMessageSMTPNotAssigned);
+    raise EXMailerEmail.CreateRes(@SXMailerEmailSMTPNotAssigned);
   FSMTP.Prepare;
   if FAttachments.Count > 0 then
     Vattach := S2C(FAttachments.CommaText)
