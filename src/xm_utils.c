@@ -128,6 +128,7 @@ unsigned char *xm_ftob64(const char *filename) {
         fclose(fp);
         return NULL;
     }
+    fclose(fp);
     res = mu_b64enc(buf, size, &len);
     free(buf);
     return res;
