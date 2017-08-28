@@ -49,6 +49,8 @@ const
 
 type
 {$IF NOT DEFINED(FPC) AND DEFINED(NEXTGEN) AND DEFINED(POSIX)}
+  AnsiChar = UTF8Char;
+  AnsiString = UTF8String;
   PAnsiChar = PUTF8Char;
 {$ENDIF}
   Pcchar = PAnsiChar;
